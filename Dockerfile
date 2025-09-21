@@ -18,6 +18,17 @@ RUN sed -ri "s/(httpredir|deb).debian.org/${APT_MIRROR:-deb.debian.org}/g" /etc/
  && sed -ri "s/(security).debian.org/${APT_MIRROR:-security.debian.org}/g" /etc/apt/sources.list
 ENV GO111MODULE=off
 
+# -----------------------------------------------------------
+# Install Docker Compose plugin (v2.39.4), multi-arch aware
+# -----------------------------------------------------------
+ARG COMPOSE_VERSION=2.39.4
+ARG TARGETARCH
+RUN mkdir -p /usr/local/lib/docker/cli-plugins && \
+    curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-linux-${TARGETARCH}" \
+    -o /usr/local/lib/docker/cli-plugins/docker-compose && \
+    chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+# -----------------------------------------------------------
+
 FROM base AS criu
 ARG DEBIAN_FRONTEND
 RUN --mount=type=cache,sharing=locked,id=moby-criu-aptlib,target=/var/lib/apt \
