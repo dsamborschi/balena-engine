@@ -140,7 +140,6 @@ RUN --mount=type=cache,sharing=locked,id=moby-cross-true-aptlib,target=/var/lib/
             libapparmor-dev:arm64 \
             libapparmor-dev:armhf \
             libseccomp-dev:arm64 \
-            libseccomp-dev:armel \
             libseccomp-dev:armhf
 
 FROM runtime-dev-cross-${CROSS} AS runtime-dev
