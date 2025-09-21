@@ -138,7 +138,6 @@ RUN --mount=type=cache,sharing=locked,id=moby-cross-true-aptlib,target=/var/lib/
     --mount=type=cache,sharing=locked,id=moby-cross-true-aptcache,target=/var/cache/apt \
         apt-get update && apt-get install -y --no-install-recommends \
             libapparmor-dev:arm64 \
-            libapparmor-dev:armel \
             libapparmor-dev:armhf \
             libseccomp-dev:arm64 \
             libseccomp-dev:armel \
